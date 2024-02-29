@@ -5,9 +5,14 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+body
+{
+    background-color: #0f0f0f;
+}
+
 header
 {
-    background-color: #65B741;
+    background-color: #19ba19;
 }
 
 nav
@@ -28,6 +33,14 @@ h1
     margin-right: 10px;
 }
 
+.slogant
+{
+    color: white;
+    margin-top: 50px;
+    text-align: center;
+}
+
+
 a
 {
     transition: 500ms;
@@ -43,12 +56,48 @@ a:hover
     color: rgb(115, 115, 115);
 }
 
+/* --------------Connection ------------*/
+.box-connection 
+{
+    transition: 500ms;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    background-color: #2b2a2a; 
+    width: 300px;
+    height: 100px; 
+    border-radius: 15px; 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border: 2px solid #65B741; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.box-connection p 
+{
+    color: #19ba19; 
+    text-align: center;
+    border-radius: 10px;
+}
+
+.box-connection:hover
+{
+    width: 310px;
+    height: 103px; 
+    margin-top: 95px;
+    transition: 500ms;
+}
+
 
 /* --------------- FOOTER ---------------*/
-footer
-{
-    background: #65B741;
+footer {
+    background: #19ba19;
     justify-content: center;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 p
