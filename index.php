@@ -48,7 +48,6 @@ else
 <br>
 <br>
 <br>
-<br>
 <?php
 include 'footer.html';
 ?>
