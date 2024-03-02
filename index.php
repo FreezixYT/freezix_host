@@ -21,7 +21,7 @@ session_start();
 </div>
 
 <?php
-$connection = true;
+$connection = false;
 
 // Vérifier l'état de connexion
 if ($connection == false)

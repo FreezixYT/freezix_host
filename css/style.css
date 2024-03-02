@@ -5,6 +5,33 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* -------------- Main------------*/
+main h1
+{
+    color: white;
+}
+
+.zone
+{
+    margin-left: 30px;
+    margin-top: 100px;
+    color: white;
+}
+
+img 
+{
+    max-width: 10%; /* Adjust the width of the image as needed */
+    margin-right: 10px;
+}
+
+
+.flex 
+{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
 body
 {
     background-color: #0f0f0f;
@@ -72,6 +99,7 @@ a:hover
     border: 2px solid #65B741; 
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 150px;
 }
 
 .box-connection p 
@@ -95,15 +123,18 @@ footer {
     background: #19ba19;
     justify-content: center;
     text-align: center;
-    position: fixed;
     bottom: 0;
     width: 100%;
+    margin-top: 50px;
 }
 
 p
 {
-    margin: 10px;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
+main
+{
+    margin-bottom: 100px;
+}
