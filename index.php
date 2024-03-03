@@ -16,7 +16,6 @@ session_start();
 
 <div class="slogant">
     <h2>Un Service d'hébergement de qualité incomparable</h2>
-    <br>
     <h1>Petit prix, grande performance</h1>
 </div>
 
