@@ -10,6 +10,29 @@
 
 <body>
 
+<?php
+// connexion.php
+
+// Vérifier si le formulaire est soumis
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Récupérer les données du formulaire
+    $nomUtilisateur = $_POST['username'];
+    $motDePasse = $_POST['password'];
+
+    // Effectuer la vérification de l'utilisateur (vous devrez implémenter cela en fonction de votre logique d'authentification)
+    // Si l'authentification réussit, définissez la variable de session et redirigez l'utilisateur
+    if (/* Votre logique d'authentification */) {
+        $_SESSION['nomUtilisateur'] = $nomUtilisateur;
+        header('Location: index.php');
+        exit();
+    } else {
+        // Afficher un message d'erreur si l'authentification échoue
+        echo "Erreur d'authentification";
+    }
+}
+?>
+
+
     <?php
 include 'header.html';
 
