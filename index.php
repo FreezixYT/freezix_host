@@ -34,6 +34,5 @@ include 'main.html';
 <?php
 include 'footer.html';
 ?>
-
 </body>
 </html>

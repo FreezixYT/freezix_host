@@ -221,9 +221,62 @@ form a
 }
 
 /* -------------- page hebergement --------------- */
-
-.center 
+.hebergement
 {
     color: #fff;
 }
 
+.hebergement h1
+{
+    margin-top: 50px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.zone-gray
+{
+    margin-top: 100px;
+    background-color: #2b2a2a;
+    width: auto;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border: 2px solid #19ba19;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.offres
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.centre
+{
+    text-align: center;
+}
+
+li
+{
+    margin-left: 20px;
+    list-style: none;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+h3
+{
+    text-align: center;
+    margin-top: 15px;
+    background-color: #19ba19;
+    align-items: center;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    min-height: 48px;
+    text-align: center;
+    width: 100%;
+}

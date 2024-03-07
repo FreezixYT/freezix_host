@@ -11,38 +11,37 @@
 <body>
 
 <?php
-// connexion.php
-
-// Vérifier si le formulaire est soumis
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Récupérer les données du formulaire
-    $nomUtilisateur = $_POST['username'];
-    $motDePasse = $_POST['password'];
-
-    // Effectuer la vérification de l'utilisateur (vous devrez implémenter cela en fonction de votre logique d'authentification)
-    // Si l'authentification réussit, définissez la variable de session et redirigez l'utilisateur
-    if (/* Votre logique d'authentification */) {
-        $_SESSION['nomUtilisateur'] = $nomUtilisateur;
-        header('Location: index.php');
-        exit();
-    } else {
-        // Afficher un message d'erreur si l'authentification échoue
-        echo "Erreur d'authentification";
-    }
-}
+//// connexion.php
+//
+//session_start(); // Déplacez cette ligne au début
+//
+//// Vérifier si le formulaire est soumis
+//if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//    // Récupérer les données du formulaire
+//    $nomUtilisateur = $_POST['username'];
+//    $motDePasse = $_POST['password'];
+//
+//    // Effectuer la vérification de l'utilisateur (vous devrez implémenter cela en fonction de votre logique d'authentification)
+//    // Si l'authentification réussit, définissez la variable de session et redirigez l'utilisateur
+//    if (/* Votre logique d'authentification */) {
+//        $_SESSION['nomUtilisateur'] = $nomUtilisateur;
+//        header('Location: index.php');
+//        exit();
+//    } else {
+//        // Afficher un message d'erreur si l'authentification échoue
+//        echo "Erreur d'authentification";
+//    }
+//}
 ?>
 
-
-    <?php
+<?php
 include 'header.html';
-
-session_start();
 ?>
 
 <main>
     <h2>Connexion</h2>
 
-    <form action="index.php" method="POST">
+    <form action="connexion.php" method="POST"> <!-- Modifiez l'action pour pointer vers le bon fichier -->
         <div class="zone-form">
             <div class="form-group">
                 <label for="username">Nom d'utilisateur :</label>
@@ -55,15 +54,13 @@ session_start();
             <div class="form-group">
                 <button type="submit">Se connecter</button>
             </div>
-            <label><p>Pas de compte ? <a href="compte.php">Crée un compte</a></label>
+            <label><p>Pas de compte ? <a href="compte.php">Créer un compte</a></label>
         </div>
-        
     </form>
 
 </main>
 
-
-    <?php
+<?php
 include 'footer.html';
 ?>
 
