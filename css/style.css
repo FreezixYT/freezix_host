@@ -58,6 +58,7 @@ nav
 {
     color: white;
     text-align: center;
+    margin-top: 50px;
 }
 
 
@@ -115,7 +116,6 @@ h2
     color: #fff;
     text-align: center;
     margin-top: 50px;
-    margin-bottom: 50px;
 }
 
 /* --------------- FOOTER ---------------*/
@@ -235,16 +235,21 @@ form a
 
 .zone-gray
 {
-    margin-top: 100px;
+    margin-top: 10px;
     background-color: #2b2a2a;
-    width: auto;
+    width: 30%;
     height: auto;
     border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 5px rgb(255, 255, 255);
     border: 2px solid #19ba19;
     margin-left: auto;
     margin-right: auto;
 
+}
+
+.zone-gray:hover
+{
+    box-shadow: 0 0 1em rgb(255, 255, 255);
 }
 
 .offres
@@ -278,5 +283,52 @@ h3
     justify-content: center;
     min-height: 48px;
     text-align: center;
-    width: 100%;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+}
+
+h3:hover
+{
+    background-color: #128d12;
+}
+
+.best
+{
+    text-align: center;
+    margin-top: 15px;
+    background-color: #19ba19;
+    align-items: center;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    height: 48px;
+    text-align: center;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    margin-top: 40px;
+    width: 120px;
+    margin-bottom: -20px;
+}
+
+img
+{
+    width: 100px;
+}
+
+/* -------------- Payement --------------- */
+span
+{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+h4
+{
+    color: #fff;
+    text-align: center;
+    margin-top: 10px;
 }

@@ -9,13 +9,18 @@
 <body>
 
 <?php
-include 'header.html';
-
 session_start();
+$_SESSION['montant'] = 10; 
 ?>
 
-<div class="slogant">
+
+<?php
+include 'header.html';
+?>
+
+
     <h2>Un Service d'hébergement de qualité incomparable</h2>
+<div class="slogant">    
     <h1>Petit prix, grande performance</h1>
 </div>
 
