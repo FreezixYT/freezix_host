@@ -18,7 +18,7 @@ main h1
     color: white;
 }
 
-img 
+.svg
 {
     max-width: 10%; 
     margin-right: 10px;
@@ -314,9 +314,51 @@ h3:hover
     margin-bottom: -20px;
 }
 
-img
+.block-demo img 
 {
-    width: 100px;
+    align-items: center;
+    display: block; 
+    margin: 0 auto; 
+    margin-top: 10px;
+}
+
+.sav
+{
+    display: flex;
+    margin-left: 40px;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.avis
+{
+    margin-top: 40px;
+    background-color: #2b2a2a;
+    width: 30%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 0 5px rgb(255, 255, 255);
+    border: 2px solid #19ba19;
+    padding: 10px;
+    margin: 1%;
+}
+
+.zone-avis
+{
+    display: flex;
+    justify-content: space-around;
+}
+
+.pseudo
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.pseudo p
+{
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 /* -------------- Payement --------------- */
@@ -332,3 +374,4 @@ h4
     text-align: center;
     margin-top: 10px;
 }
+

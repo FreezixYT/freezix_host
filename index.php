@@ -10,7 +10,7 @@
 
 <?php
 session_start();
-$_SESSION['montant'] = 10; 
+$_SESSION['montant'] = 0; 
 ?>
 
 

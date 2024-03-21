@@ -11,43 +11,39 @@
 <body>
 <?php
 session_start();
-echo $_SESSION['montant']; 
 include 'header.html';
 ?>
 
-    <main>
-        <h2>Payement</h2>
-        <br>
-        <br>
-        <?php
-       echo "<h4>Montant : " . $montant . " chf.-</h4>";
-
-
-        ?>
-
-        <form action="index.php" method="POST" class="zone-form">
-            <div class="form-group">
-                <label for="cartnumber">Numero de carte</label>
-                <input type="text" id="cartnumber" name="cartnumber" required>
-            </div>
-           <span>
-           <div class="form-group">
-                <label for="cvc">CVC</label>
-                <input type="text" id="cvc" name="cvc" required>
-            </div>
-            <div class="form-group">
-                <label for="date">Expiration</label>
-                <input type="date" id="date" name="date" required>
-            </div>
-            </span>
-            <div class="form-group">
-                <button type="submit">Payer</button>
-            </div>
-        </form>
-    </main>
-
-
+<main>
+    <h2>Paiement</h2>
+    <br>
+    <br>
     <?php
+    // Initialiser la variable $montant si elle est définie dans la session
+    $montant = isset($_SESSION['montant']) ? $_SESSION['montant'] : 0;
+    echo "<h4>Montant : " . $montant . " chf.-</h4>";
+    ?>
+
+    <form action="process_payment.php" method="POST" class="zone-form">
+        <div class="form-group">
+            <label for="cartnumber">Numéro de carte</label>
+            <input type="text" id="cartnumber" name="cartnumber" required>
+        </div>
+        <div class="form-group">
+            <label for="cvc">CVC</label>
+            <input type="text" id="cvc" name="cvc" required>
+        </div>
+        <div class="form-group">
+            <label for="date">Expiration</label>
+            <input type="date" id="date" name="date" required>
+        </div>
+        <div class="form-group">
+            <button type="submit">Payer</button>
+        </div>
+    </form>
+</main>
+
+<?php
 include 'footer.html';
 ?>
 
