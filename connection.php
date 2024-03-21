@@ -11,45 +11,52 @@
 <body>
 
 <?php
-//// connexion.php
-//
-//session_start(); // Déplacez cette ligne au début
-//
-//// Vérifier si le formulaire est soumis
-//if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//    // Récupérer les données du formulaire
-//    $nomUtilisateur = $_POST['username'];
-//    $motDePasse = $_POST['password'];
-//
-//    // Effectuer la vérification de l'utilisateur (vous devrez implémenter cela en fonction de votre logique d'authentification)
-//    // Si l'authentification réussit, définissez la variable de session et redirigez l'utilisateur
-//    if (/* Votre logique d'authentification */) {
-//        $_SESSION['nomUtilisateur'] = $nomUtilisateur;
-//        header('Location: index.php');
-//        exit();
-//    } else {
-//        // Afficher un message d'erreur si l'authentification échoue
-//        echo "Erreur d'authentification";
-//    }
-//}
-?>
-
-<?php
 include 'header.html';
+?>
+<?php 
+   session_start() ;
+  if(isset($_POST['boutton-valider']))
+  { 
+    if(isset($_POST['email']) && isset($_POST['mdp'])) 
+    {
+      $email = $_POST['email'] ;
+      $mdp = $_POST['mdp'] ;
+      $erreur = "" ;
+       
+       $nom_serveur = "localhost";
+       $utilisateur = "root";
+       $mot_de_passe ="Super";
+       $nom_base_données ="freezix_host" ;
+       $con = mysqli_connect($nom_serveur , $utilisateur ,$mot_de_passe , $nom_base_données);
+       
+        $req = mysqli_query($con , "SELECT * FROM compte WHERE email = '$email' AND mdp ='$mdp' ") ;
+        $num_ligne = mysqli_num_rows($req) ;
+        if($num_ligne > 0)
+        {
+            header("Location:bienvenue.php") ;
+           
+            $_SESSION['email'] = $email ;
+        }
+        else 
+        {
+            $erreur = "Adresse Mail ou Mots de passe incorrectes !";
+        }
+    }
+  }
 ?>
 
 <main>
     <h2>Connexion</h2>
 
-    <form action="connexion.php" method="POST"> <!-- Modifiez l'action pour pointer vers le bon fichier -->
+    <form action="#" method="POST">
         <div class="zone-form">
             <div class="form-group">
-                <label for="username">Nom d'utilisateur :</label>
-                <input type="text" id="username" name="username" required>
+                <label for="email">Email :</label>
+                <input type="text" name="email" required>
             </div>
             <div class="form-group">
                 <label for="password">Mot de passe :</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" name="password" required>
             </div>
             <div class="form-group">
                 <button type="submit">Se connecter</button>
