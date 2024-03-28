@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "Super";
-$dbname = "compte";
+$servername = "http://localhost/phpmyadmin";
+$username = "nathan";
+$password = "1223Colo";
+$dbname = "freezix_host";
 
 try {
     $bdd = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
