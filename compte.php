@@ -2,15 +2,17 @@
 // Connexion à la base de données
 $servername = "localhost";
 $username = "nathan";
-$password = "1223Colo";
+$password = "Super";
 $dbname = "freezix_host";
 
-try {
+try 
+{
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
     echo "La connexion a bien été établie";
 }
-catch (PDOException $e){
+catch (PDOException $e)
+{
     echo "La connexion a échoué : " . $e->getMessage(); 
 }
 
