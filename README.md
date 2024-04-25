@@ -21,6 +21,14 @@ INSERT INTO `compte` (`idCompte`, `prenom`, `nom`, `email`, `password`) VALUES (
 - création d'un formulaire d'inscription fonctionnelle
 - creation de panier.php
 
+# 25.04.24
+- ajoute de la possibiliter de se connecter
+- reparation de l'header
+- creation du panel admin
+- creation du profil user
+- fonctionaliter profil et panel admin
+- debut de la docs
+
 
 
 
