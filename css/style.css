@@ -5,31 +5,6 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/* -------------- header------------*/
-header 
-{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-nav 
-{
-    display: flex;
-    justify-content: space-around;
-}
-
-.nav-main 
-{
-    display: flex;
-    align-items: center;
-}
-
-header
-{
-    background-color: #19ba19;
-}
-
 /* main */
 main h1
 {
@@ -382,3 +357,35 @@ h4
     margin-top: 10px;
 }
 
+/* ------------ mon compte ------------- */
+table 
+{
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid #19ba19;
+    color: #fff;
+}
+
+th, td 
+{
+    border: 1px solid #19ba19;
+    padding: 8px;
+    text-align: center;
+}
+
+th 
+{
+    background-color: #19ba19;
+    color: black;
+}
+    
+tr:nth-child(even) 
+{
+    background-color: #333;
+}
+
+
+tr:nth-child(odd) 
+{
+    background-color: #222;
+}

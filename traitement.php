@@ -7,7 +7,7 @@ $dbname = "freezix_host";
 try {
     $bdd = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Connexion réussie !"; // Vous aviez oublié le point-virgule ici
+    echo "Connexion réussie !";
 } catch(PDOException $e) {
     echo "Erreur : " . $e->getMessage();
 }

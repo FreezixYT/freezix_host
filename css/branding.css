@@ -1,0 +1,23 @@
+header
+{
+    background-color: #19ba19;
+}
+
+img {
+    width: 35px;
+    vertical-align: middle;
+}
+
+
+nav
+{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 10px;
+    margin-right: 10px;
+    align-items: center;
+    margin-top: 3px;
+    margin-bottom: 2px;
+}
+
+
