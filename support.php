@@ -19,7 +19,9 @@ session_start();
 ?>
 
 <h1 class="slogant">Support</h1>
-
+<script>
+alert("! Cette page est actuellement en maintenance !")
+</script>
 <?php
 include 'footer.html';
 ?>

@@ -11,64 +11,81 @@
 <body>
     <main>
         <?php
+        session_start();
         include 'header.html';
 
-        session_start();
+        // Vérifier si l'utilisateur est connecté et est un administrateur
+        if (!isset($_SESSION['user_id']) || !isset($_SESSION['isAdmin']) || !$_SESSION['isAdmin']) {
+            header("Location: connexion.php");
+            exit();
+        }
 
-        //connection a la base
+        // Connexion à la base de données
         $servername = "localhost";
         $username = "nathan";
         $password = "Super";
         $dbname = "freezix_host";
 
-        $connexion = new mysqli($servername, $username, $password, $dbname);
-
-        // Vérification de la connexion
-        if ($connexion->connect_error) 
-        {
-            die("Échec de la connexion à la base de données : " . $connexion->connect_error);
+        try {
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            die("Échec de la connexion à la base de données : " . $e->getMessage());
         }
 
         // Requête SQL pour récupérer les données
-        $sql = "SELECT prenom, nom, email FROM compte";
-
-        // Exécution de la requête
-        $resultat = $connexion->query($sql);
+        $sql = "SELECT Prenom, Nom, Email FROM Compte";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
 
         // Vérification des résultats et affichage des données dans le tableau
-        if ($resultat->num_rows > 0) {
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if ($results) {
             echo "<h1>Panel Admin</h1>";
             echo "<table>";
             echo "<tr><th>Prénom</th><th>Nom</th><th>Email</th></tr>";
             // Boucler à travers chaque ligne de résultat
-            while ($row = $resultat->fetch_assoc()) {
+            foreach ($results as $row) {
                 // Afficher les données dans le tableau
                 echo "<tr>";
-                echo "<td>" . $row["prenom"] . "</td>";
-                echo "<td>" . $row["nom"] . "</td>";
-                echo "<td>" . $row["email"] . "</td>";
+                echo "<td>" . htmlspecialchars($row["Prenom"]) . "</td>";
+                echo "<td>" . htmlspecialchars($row["Nom"]) . "</td>";
+                echo "<td>" . htmlspecialchars($row["Email"]) . "</td>";
                 echo "</tr>";
             }
             echo "</table>";
-            echo "</div>";
-        } else 
-        {
-            echo "Aucun résultat trouvé.";
+        } else {
+            echo "<p>Aucun résultat trouvé.</p>";
         }
 
         // Fermer la connexion à la base de données
-        $connexion->close();
+        $conn = null;
 
         include 'footer.html';
         ?>
         <style>
-    h1 
-    {
-        text-align: center;
-        margin-top: 10px;
-        margin-bottom: 50px;
-    }
-    </style>
+            h1 {
+                text-align: center;
+                margin-top: 10px;
+                margin-bottom: 50px;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px 0;
+                font-size: 1em;
+                min-width: 400px;
+                border: 1px solid #dddddd;
+            }
+            table th, table td {
+                padding: 12px 15px;
+                border: 1px solid #dddddd;
+                text-align: left;
+            }
+            table th {
+                background-color: #f2f2f2;
+            }
+        </style>
     </main>
 </body>
 

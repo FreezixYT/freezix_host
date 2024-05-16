@@ -8,9 +8,6 @@ Language :
 PHPMYADMIN
 
 
-example de requete d'insertion de personne
-INSERT INTO `compte` (`idCompte`, `prenom`, `nom`, `email`, `password`) VALUES (NULL, 'nathan', 'pache', 'nathan@freezix.com', '1223Colo');
-
 # HISTORIQUE DE MODIFICATION
 # 21.03.24
 - fin de la page hebregement.html
@@ -29,9 +26,15 @@ INSERT INTO `compte` (`idCompte`, `prenom`, `nom`, `email`, `password`) VALUES (
 - fonctionaliter profil et panel admin
 - debut de la docs
 
+# 02.05.24 
+- planification
+- user case
+- amelioration script bdd
 
-
-
-
+# 16.05.2024
+- base de donner final
+- sincronisation de la connection sur toutes les pages
+- fusion du page html / php
+- regle problem panel profil
 
 

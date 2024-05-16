@@ -1,38 +1,43 @@
 <?php
+include 'header.html';
 // Connexion à la base de données
 $servername = "localhost";
 $username = "nathan";
 $password = "Super";
 $dbname = "freezix_host";
 
-try 
-{
+try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
-    echo "La connexion a bien été établie";
-}
-catch (PDOException $e)
-{
-    echo "La connexion a échoué : " . $e->getMessage(); 
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo "La connexion a échoué : " . $e->getMessage();
 }
 
-if(isset($_POST["envoyer"]))
-{
+if (isset($_POST["envoyer"])) {
     $prenom = $_POST["prenom"];
     $nom = $_POST["nom"];
     $email = $_POST["email"];
-    $password = $_POST["password"];
-    $sql = "INSERT INTO `compte`(`prenom`, `nom`, `email`, `password`) VALUES (:prenom, :nom, :email, :password)";
-    $stml = $conn->prepare($sql);
+    $password = password_hash($_POST["password"], PASSWORD_DEFAULT); // Sécuriser le mot de passe avec un hash
+    $isAdmin = false; // Définir isAdmin sur false
 
-    $stml->bindParam(":prenom", $prenom);
-    $stml->bindParam(":nom", $nom);
-    $stml->bindParam(":email", $email);
-    $stml->bindParam(":password", $password);
-    $stml->execute();
+    $sql = "INSERT INTO Compte (Prenom, Nom, Email, MotDePasse, isAdmin) VALUES (:prenom, :nom, :email, :password, :isAdmin)";
+    $stmt = $conn->prepare($sql);
+
+    $stmt->bindParam(":prenom", $prenom);
+    $stmt->bindParam(":nom", $nom);
+    $stmt->bindParam(":email", $email);
+    $stmt->bindParam(":password", $password);
+    $stmt->bindParam(":isAdmin", $isAdmin, PDO::PARAM_BOOL);
+
+    if ($stmt->execute()) {
+        // Redirection après création réussie du compte
+        header("Location: Hebergement.php");
+        exit(); // Assurez-vous de bien sortir après la redirection
+    } else {
+        echo "Erreur lors de la création du compte.";
+    }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -48,7 +53,7 @@ if(isset($_POST["envoyer"]))
     <main>
         <h2>Créer un compte</h2>
 
-        <form action="" method="post" class="zone-form">
+        <form action="Hebergement.php" method="post" class="zone-form">
             <div class="form-group">
                 <label for="prenom">Prénom</label>
                 <input type="text" id="prenom" name="prenom" required>
@@ -70,7 +75,6 @@ if(isset($_POST["envoyer"]))
             </div>
         </form>
     </main>
-
 
     <?php include 'footer.html'; ?>
 
