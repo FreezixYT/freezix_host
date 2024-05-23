@@ -25,7 +25,8 @@
         $dbname = "freezix_host";
 
         $connexion = new mysqli($servername, $username, $password, $dbname);
-        if ($connexion->connect_error) {
+        if ($connexion->connect_error) 
+        {
             die("Erreur de connexion à la base de données : " . $connexion->connect_error);
         }
 
@@ -34,13 +35,15 @@
         $sql = "SELECT prenom, nom, email FROM Compte WHERE idCompte='$id_compte'";
         $resultat = $connexion->query($sql);
 
-        if ($resultat->num_rows > 0) {
+        if ($resultat->num_rows > 0) 
+        {
             echo "<h1>Mon Compte</h1>";
             echo "<div>";
             echo "<a href='panier.php'><h3>Voir mon panier</h3></a>";
             echo "<table>";
             echo "<tr><th>Prénom</th><th>Nom</th><th>Email</th></tr>";
-            while ($row = $resultat->fetch_assoc()) {
+            while ($row = $resultat->fetch_assoc()) 
+            {
                 echo "<tr>";
                 echo "<td>" . $row["prenom"] . "</td>";
                 echo "<td>" . $row["nom"] . "</td>";
@@ -55,13 +58,17 @@
             echo "<form method='post' action='parametres.php'>";
             echo "<button type='submit' name='reglages'>Réglages</button>";
             echo "</form>";
-        } else {
+        } 
+        
+        else 
+        {
             echo "Aucun résultat trouvé.";
         }
         $connexion->close();
 
         // Déconnexion de l'utilisateur
-        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["deconnexion"])) {
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["deconnexion"])) 
+        {
             session_unset();
             session_destroy();
             header("Location: index.php");
@@ -71,7 +78,8 @@
         include 'footer.html';
     ?>
     <style>
-        button[type="submit"] {
+        button[type="submit"] 
+        {
             background-color: #19ba19;
             color: #fff;
             border: none;
@@ -90,11 +98,13 @@
             transition: background-color 500ms;
         }
 
-        button[type="submit"]:hover {
+        button[type="submit"]:hover 
+        {
             background-color: #128d12;
         }
 
-        h1 {
+        h1 
+        {
             text-align: center;
             margin-top: 10px;
         }

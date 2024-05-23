@@ -32,7 +32,19 @@ if (isset($_POST["envoyer"])) {
     if ($stmt->execute()) {
         // Redirection après création réussie du compte
         header("Location: Hebergement.php");
-        exit(); // Assurez-vous de bien sortir après la redirection
+      
+        $to = "nathan.pch2@eduge.ch";
+        $subject = "vaildation";
+        $message = "Bienvenue parmis nous ! "
+
+        mail(
+            string $to,
+            string $subject,
+            string $message,
+            array|string $additional_headers = [],
+            string $additional_params = ""
+        ): bool
+        exit(); 
     } else {
         echo "Erreur lors de la création du compte.";
     }

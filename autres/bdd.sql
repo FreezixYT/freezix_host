@@ -77,3 +77,14 @@ CREATE TABLE IF NOT EXISTS Reservation (
     FOREIGN KEY (idUtilisateur) REFERENCES Compte(idCompte),
     FOREIGN KEY (idEmplacement) REFERENCES EmplacementStockage(idEmplacement)
 );
+
+-- Table Ticket pour le support
+CREATE TABLE IF NOT EXISTS Ticket 
+(
+    idTicket INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    contenue TEXT,
+    resolue BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (user_id) REFERENCES Compte(idCompte)
+);

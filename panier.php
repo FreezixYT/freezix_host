@@ -50,13 +50,14 @@
         }
 
         // Afficher le contenu du panier
-        $sql = "SELECT produit, prix FROM panier WHERE user_id = :user_id";
+        $sql = "SELECT produit, prix FROM Panier WHERE user_id = :user_id";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':user_id', $user_id);
         $stmt->execute();
         $panier = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        if ($panier) {
+        if ($panier) 
+        {
             echo "<h2>Votre panier</h2>";
             echo "<table>
                     <tr>
@@ -70,11 +71,17 @@
                       </tr>";
             }
             echo "</table>";
-        } else {
+        } 
+
+        else 
+        {
             echo "<p>Votre panier est vide.</p>";
         }
 
-    } catch (PDOException $e) {
+    } 
+    
+    catch (PDOException $e) 
+    {
         echo "Erreur : " . $e->getMessage();
     }
 
@@ -84,5 +91,4 @@
     <?php include 'footer.html'; ?>
     </main>
 </body>
-
 </html>

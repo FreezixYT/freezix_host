@@ -36,5 +36,9 @@ PHPMYADMIN
 - sincronisation de la connection sur toutes les pages
 - fusion du page html / php
 - regle problem panel profil
+- page de reglage pour mofifier les info du compte
 
-
+# 23.05.2024
+- finalisation planing
+- ajout de l'espace commentaire
+- ajout de la table tiket

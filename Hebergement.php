@@ -15,11 +15,35 @@ include 'header.html';
 session_start();
 
 include 'hebergement.html';
+
+// chaine de connection
+$servername = "localhost";
+$username = "nathan";
+$password = "Super";
+$dbname = "freezix_host";
+
+// connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// verification
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// afficher les 3 dernier commentaire avec la note de 5 etoile :)
+$sql = "SELECT Commentaire.Contenu, Commentaire.DateCommentaire, Compte.Nom, Commentaire.note
+        FROM Commentaire
+        JOIN Compte ON Commentaire.idUtilisateur = Compte.idCompte
+        ORDER BY Commentaire.DateCommentaire DESC
+        LIMIT 3";
+
+$result = $conn->query($sql);
 ?>
 
 <main class="hebergement">
     <style>
-        .svg {
+        .svg 
+        {
             width: 200%;
         }
     </style>
@@ -136,38 +160,43 @@ include 'hebergement.html';
         </div>
     </div>
     <hr>
-    <h1>Avis</h1>
+
+ <!-- ESPACE COMMENTAIRE-->
+ <h1>Avis</h1>
     <div class="zone-avis">
-        <div class="avis">
-            <div class="pseudo">
-                <p>@michell34</p>
-                <p>&#9733;&#9733;&#9733;&#9733;</p>
-            </div>
-            <p>Service de qualité, bon support</p>
-            <br>
-            <p>21/03/2024</p>
-        </div>
+    <?php
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo '<div class="avis">';
+                    echo '<div class="pseudo">';
+                    echo '<p>@' . htmlspecialchars($row["Nom"]) . '</p>';
 
-        <div class="avis">
-            <div class="pseudo">
-                <p>@freezix</p>
-                <p>&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-            </div>
-            <p>Le meilleur service d'hébergement du monde ! Le support est de très bonne qualité</p>
-            <br>
-            <p>21/03/2024</p>
-        </div>
+                    // Affichager des étoiles en fonction de la note
+                    $note = intval($row["note"]); // Convertir la note en entier
+                    echo '<p>';
+                    for ($i = 0; $i < $note; $i++) {
+                        echo '&#9733;'; // Afficher une étoile
+                    }
+                    echo '</p>';
 
-        <div class="avis">
-            <div class="pseudo">
-                <p>@freeVebuck</p>
-                <p>&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-            </div>
-            <p>Le meilleur service d'hébergement du monde ! Le support est de très bonne qualité</p>
-            <br>
-            <p>21/03/2024</p>
-        </div>
+                    echo '</div>';
+                    echo '<p>' . htmlspecialchars($row["Contenu"]) . '</p>';
+                    echo '<br>';
+                    echo '<p>' . htmlspecialchars($row["DateCommentaire"]) . '</p>';
+                    echo '</div>';
+                }
+            } 
+            else 
+            {
+                echo '<p>aucun commentaire trouvé</p>';
+            }
+            ?>
     </div>
+    <?php if (isset($_SESSION['user_id'])): ?>
+            <div class="add-comment">
+                <button onclick="window.location.href='commentaire.php'">Ajouter un commentaire</button>
+            </div>
+        <?php endif; ?>
 </main>
 
 <?php
@@ -175,7 +204,7 @@ include 'footer.html';
 ?>
 </body>
 <style>
-        button[type="submit"] 
+        button[type="submit"] , button
         {
             background-color: #19ba19;
             color: #fff;
@@ -195,10 +224,67 @@ include 'footer.html';
             transition: background-color 500ms;
         }
 
-        button[type="submit"]:hover 
+        button[type="submit"]:hover , button:hover 
         {
             background-color: #128d12;
             transition: background-color 500ms;
         }
     </style>
 </html>
+
+<?php
+session_start();
+
+// Vérifiez si l'utilisateur est connecté
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
+// Chaine de connexion à la base de données
+$servername = "localhost";
+$username = "nathan";
+$password = "Super";
+$dbname = "freezix_host";
+
+// Connection à la base de données
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Vérification de la connexion
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Gestion de l'ajout au panier
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['produit']) && isset($_POST['prix'])) {
+    $user_id = $_SESSION['user_id'];
+    $produit = $_POST['produit'];
+    $prix = $_POST['prix'];
+
+    // Vérifier si l'utilisateur a déjà un panier
+    $sql = "SELECT * FROM Panier WHERE user_id = $user_id";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        // L'utilisateur a déjà un panier, ajout de l'item
+        $row = $result->fetch_assoc();
+        $panier_id = $row['idPanier'];
+    } else {
+        // Création d'un nouveau panier pour l'utilisateur
+        $sql = "INSERT INTO Panier (user_id) VALUES ($user_id)";
+        if ($conn->query($sql) === TRUE) {
+            $panier_id = $conn->insert_id;
+        } else {
+            echo "Erreur lors de la création du panier: " . $conn->error;
+        }
+    }
+
+    // Ajout de l'item au panier
+    $sql = "INSERT INTO PanierItem (panier_id, produit, prix) VALUES ($panier_id, '$produit', $prix)";
+    if ($conn->query($sql) === TRUE) {
+        echo "Item ajouté au panier avec succès.";
+    } else {
+        echo "Erreur lors de l'ajout de l'item au panier: " . $conn->error;
+    }
+}
+?>
