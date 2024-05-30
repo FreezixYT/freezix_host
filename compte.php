@@ -18,7 +18,7 @@ if (isset($_POST["envoyer"])) {
     $nom = $_POST["nom"];
     $email = $_POST["email"];
     $password = password_hash($_POST["password"], PASSWORD_DEFAULT); // Sécuriser le mot de passe avec un hash
-    $isAdmin = false; // Définir isAdmin sur false
+    $isAdmin = false; 
 
     $sql = "INSERT INTO Compte (Prenom, Nom, Email, MotDePasse, isAdmin) VALUES (:prenom, :nom, :email, :password, :isAdmin)";
     $stmt = $conn->prepare($sql);
@@ -32,18 +32,6 @@ if (isset($_POST["envoyer"])) {
     if ($stmt->execute()) {
         // Redirection après création réussie du compte
         header("Location: Hebergement.php");
-      
-        $to = "nathan.pch2@eduge.ch";
-        $subject = "vaildation";
-        $message = "Bienvenue parmis nous ! "
-
-        mail(
-            string $to,
-            string $subject,
-            string $message,
-            array|string $additional_headers = [],
-            string $additional_params = ""
-        ): bool
         exit(); 
     } else {
         echo "Erreur lors de la création du compte.";
@@ -65,7 +53,7 @@ if (isset($_POST["envoyer"])) {
     <main>
         <h2>Créer un compte</h2>
 
-        <form action="Hebergement.php" method="post" class="zone-form">
+        <form action="compte.php" method="post" class="zone-form">
             <div class="form-group">
                 <label for="prenom">Prénom</label>
                 <input type="text" id="prenom" name="prenom" required>

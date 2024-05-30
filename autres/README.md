@@ -42,3 +42,9 @@ PHPMYADMIN
 - finalisation planing
 - ajout de l'espace commentaire
 - ajout de la table tiket
+
+# 30.05.2024
+- ajoute fonctionaliter ticket
+- l'admin peutvoir tout les ticker cree depuis son panel
+- l'user peut voir tout les ticker qu'il a crée
+- patch bug creation compte

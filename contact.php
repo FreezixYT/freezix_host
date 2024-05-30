@@ -7,14 +7,15 @@
     <link rel="stylesheet" href="/css/style.css">
     <title>freez host | Support</title>
 </head>
-<script>
-alert("! Cette page est actuellement en maintenance !")
-</script>
+
 <body>
     <main>
     <?php
 include 'header.html';
 session_start();
+echo "<script>
+alert("! Cette page est actuellement en maintenance !")
+</script>";
 ?>
 
 <h1 class="slogant">Contacte</h1>
