@@ -109,6 +109,7 @@ footer
     bottom: 0;
     width: 100%;
     margin-top: 50px;
+    padding: 20px 0;
 }
 
 p
@@ -134,14 +135,6 @@ body
     min-height: 100%;
     display: flex;
     flex-direction: column;
-}
-
-
-footer 
-{
-    background: #19ba19;
-    text-align: center;
-    padding: 20px 0;
 }
 
 

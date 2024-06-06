@@ -1,3 +1,11 @@
+<?php
+# Nathan Pache
+# IDA-P1A
+# 23.05.2024
+# ajout page panier
+# status : non Terminer
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 

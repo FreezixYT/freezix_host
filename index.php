@@ -1,8 +1,9 @@
 <?php
-# Page d'accueil
 # Nathan Pache
 # IDA-P1A
 # 16.05.2024
+# Page d'accuil
+# status : Terminer
 ?>
 
 <!DOCTYPE html>
@@ -30,10 +31,13 @@ session_start();
 //connection
 $connection = isset($_SESSION['user_id']);
 
-// Afficher co-toi.html uniquement si l'utilisateur n'est pas connecter
+// Afficher uniquement si l'utilisateur n'est pas connecté
 if (!$connection) {
-    include 'co-toi.html';
+    echo '<div class="box-connection">';
+    echo '<a href="/connection.php"><p>SE CONNECTER</p></a>';
+    echo '</div>';
 }
+
 
 ?>
   <main>

@@ -1,42 +1,9 @@
 <?php
-include 'header.html';
-// Connexion à la base de données
-$servername = "localhost";
-$username = "nathan";
-$password = "Super";
-$dbname = "freezix_host";
-
-try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo "La connexion a échoué : " . $e->getMessage();
-}
-
-if (isset($_POST["envoyer"])) {
-    $prenom = $_POST["prenom"];
-    $nom = $_POST["nom"];
-    $email = $_POST["email"];
-    $password = password_hash($_POST["password"], PASSWORD_DEFAULT); // Sécuriser le mot de passe avec un hash
-    $isAdmin = false; 
-
-    $sql = "INSERT INTO Compte (Prenom, Nom, Email, MotDePasse, isAdmin) VALUES (:prenom, :nom, :email, :password, :isAdmin)";
-    $stmt = $conn->prepare($sql);
-
-    $stmt->bindParam(":prenom", $prenom);
-    $stmt->bindParam(":nom", $nom);
-    $stmt->bindParam(":email", $email);
-    $stmt->bindParam(":password", $password);
-    $stmt->bindParam(":isAdmin", $isAdmin, PDO::PARAM_BOOL);
-
-    if ($stmt->execute()) {
-        // Redirection après création réussie du compte
-        header("Location: Hebergement.php");
-        exit(); 
-    } else {
-        echo "Erreur lors de la création du compte.";
-    }
-}
+# Nathan Pache
+# IDA-P1A
+# 02.05.2024
+# page creation compte
+# status : Terminer
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +15,7 @@ if (isset($_POST["envoyer"])) {
     <title>FREEZ HOST</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
-
+<?php include 'header.html'; ?>
 <body>
     <main>
         <h2>Créer un compte</h2>
@@ -76,8 +43,55 @@ if (isset($_POST["envoyer"])) {
         </form>
     </main>
 
-    <?php include 'footer.html'; ?>
-
 </body>
-
 </html>
+
+<?php
+// Connexion à la base de données
+$servername = "localhost";
+$username = "nathan";
+$password = "Super";
+$dbname = "freezix_host";
+
+try 
+{
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} 
+catch (PDOException $e) 
+{
+    echo "La connexion a échoué : " . $e->getMessage();
+}
+
+if (isset($_POST["envoyer"])) 
+{
+    $prenom = $_POST["prenom"];
+    $nom = $_POST["nom"];
+    $email = $_POST["email"];
+    $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+    // par defaul, user pas en admin. 
+    $isAdmin = false; 
+
+    //requete sql 
+    $sql = "INSERT INTO Compte (Prenom, Nom, Email, MotDePasse, isAdmin) VALUES (:prenom, :nom, :email, :password, :isAdmin)";
+    $stmt = $conn->prepare($sql);
+
+    $stmt->bindParam(":prenom", $prenom);
+    $stmt->bindParam(":nom", $nom);
+    $stmt->bindParam(":email", $email);
+    $stmt->bindParam(":password", $password);
+    $stmt->bindParam(":isAdmin", $isAdmin, PDO::PARAM_BOOL);
+
+    if ($stmt->execute()) 
+    {
+        // Redirection après création réussie du compte
+        header("Location: Hebergement.php");
+        exit(); 
+    } 
+    else 
+    {
+        echo "Erreur lors de la création du compte.";
+    }
+}
+include 'footer.html'; 
+?>

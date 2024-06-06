@@ -1,5 +1,5 @@
 -- Création de la base de données
-CREATE DATABASE IF NOT EXISTS freezhost;
+CREATE DATABASE IF NOT EXISTS freez_host;
 
 -- Table Compte pour les utilisateurs
 CREATE TABLE IF NOT EXISTS Compte (

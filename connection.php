@@ -1,3 +1,11 @@
+<?php
+# Nathan Pache
+# IDA-P1A
+# 02.05.2024
+# page creation compte
+# status : Terminer
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -28,7 +36,8 @@ try {
     echo "La connexion a échoué : " . $e->getMessage();
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") 
+{
     $email = $_POST["email"];
     $password = $_POST["password"];
 
@@ -38,13 +47,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($user && password_verify($password, $user["MotDePasse"])) {
+    if ($user && password_verify($password, $user["MotDePasse"])) 
+    {
         // Authentification réussie, démarrer une session utilisateur
         $_SESSION["user_id"] = $user["idCompte"];
         $_SESSION["user_name"] = $user["Prenom"];
         header("Location: hebergement.php");
         exit();
-    } else {
+    } 
+    else 
+    {
         // Authentification échouée
         $login_error = "Email ou mot de passe incorrect.";
     }

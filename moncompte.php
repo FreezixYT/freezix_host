@@ -1,4 +1,12 @@
 <?php
+# Nathan Pache
+# IDA-P1A
+# 23.05.2024
+# page mon compte
+# status : Terminer
+?>
+
+<?php
 include 'header.html';
 session_start();
 
@@ -73,7 +81,8 @@ if ($resultat_user->num_rows > 0) {
 $connexion->close();
 
 // Déconnexion de l'utilisateur
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["deconnexion"])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["deconnexion"])) 
+{
     session_unset();
     session_destroy();
     header("Location: index.php");
@@ -82,3 +91,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["deconnexion"])) {
 
 include 'footer.html';
 ?>
+<style>
+h1
+{
+    color: white;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+</style>

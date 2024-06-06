@@ -1,3 +1,11 @@
+<?php
+# Nathan Pache
+# IDA-P1A
+# 23.05.2024
+# panel admin
+# status : pas terminer
+?> 
+
 <!DOCTYPE html>
 <html lang="fr">
 

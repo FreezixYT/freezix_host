@@ -1,0 +1,54 @@
+/* INFO : le code pour les étloile à été genere par chatGPT */
+button[type="submit"] 
+        {
+            background-color: #19ba19;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            padding: 10px;
+            font-size: large;
+            transition: background-color 500ms;
+        }
+
+        button[type="submit"]:hover 
+        {
+            background-color: #128d12;
+            transition: background-color 500ms;
+        }
+
+        textarea 
+        {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .rating 
+        {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .rating input 
+        {
+            display: none;
+        }
+
+        .rating label 
+        {
+            font-size: 2rem;
+            color: #ddd;
+            cursor: pointer;
+        }
+
+        .rating input:checked ~ label,
+        .rating input:hover ~ label,
+        .rating label:hover,
+        .rating label:hover ~ label 
+        {
+            color: #f5b301;
+        }

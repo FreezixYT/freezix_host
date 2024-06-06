@@ -48,3 +48,8 @@ PHPMYADMIN
 - l'admin peutvoir tout les ticker cree depuis son panel
 - l'user peut voir tout les ticker qu'il a crée
 - patch bug creation compte
+
+# 06.06.2024
+- page de modification des donner personelle
+- ajout en tete dans le code
+- suppresion page co-toi.html 

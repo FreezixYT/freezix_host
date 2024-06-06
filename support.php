@@ -3,6 +3,10 @@
 # IDA-P1A
 # 23.05.2024
 # page ajout ticket support
+# status : non terminer
+?>
+
+<?php
 
 session_start();
 
