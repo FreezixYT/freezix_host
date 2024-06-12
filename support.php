@@ -3,7 +3,7 @@
 # IDA-P1A
 # 23.05.2024
 # page ajout ticket support
-# status : non terminer
+# status : finis
 ?>
 
 <?php
@@ -122,7 +122,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         </form>
     </div>
     
-    <!-- Afficher si l'envoie fonctionne -->
     <div class="success-container">
         <?php if ($success): ?>
             <p class="success-message">Succès! Votre ticket a été créé.</p>

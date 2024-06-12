@@ -1,0 +1,30 @@
+button[type="submit"] , button
+{
+    background-color: #19ba19;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    min-height: 48px;
+    text-align: center;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    padding: 10px;
+    font-size: x-large;
+    transition: background-color 500ms;
+}
+
+button[type="submit"]:hover , button:hover 
+{
+    background-color: #128d12;
+    transition: background-color 500ms;
+}
+
+p
+{
+    color: white;
+}

@@ -13,7 +13,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FREEZ HOST | Hébergement</title>
-    
+    <link rel="stylesheet" href="/css/button.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
@@ -21,8 +22,6 @@
 include 'header.html';
 
 session_start();
-
-include 'hebergement.html';
 
 // chaine de connection
 $servername = "localhost";
@@ -34,11 +33,12 @@ $dbname = "freezix_host";
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // verification
-if ($conn->connect_error) {
+if ($conn->connect_error) 
+{
     die("Connection failed: " . $conn->connect_error);
 }
 
-// afficher les 3 dernier commentaire avec la note de 5 etoile :)
+// afficher les 3 dernier commentaire.
 $sql = "SELECT Commentaire.Contenu, Commentaire.DateCommentaire, Compte.Nom, Commentaire.note
         FROM Commentaire
         JOIN Compte ON Commentaire.idUtilisateur = Compte.idCompte
@@ -74,10 +74,10 @@ $result = $conn->query($sql);
             <hr>
             <p class="centre">2 CHF / mois</p>
             <form action="panier.php" method="post">
-                <input type="hidden" name="produit" value="Basique">
-                <input type="hidden" name="prix" value="2">
-                <button type="submit">Acheter</button>
-            </form>
+    <input type="hidden" name="idProduit" value="1">
+    <button type="submit">Acheter</button>
+</form>
+
             <br>
             <hr>
             <br>
@@ -104,10 +104,12 @@ $result = $conn->query($sql);
             <hr>
             <p class="centre">4 CHF / mois</p>
             <form action="panier.php" method="post">
-                <input type="hidden" name="produit" value="Medium">
-                <input type="hidden" name="prix" value="4">
-                <button type="submit">Acheter</button>
-            </form>
+    <!-- Champ hidden pour stocker l'ID du produit -->
+    <input type="hidden" name="idProduit" value="2">
+    <!-- Bouton "Acheter" -->
+    <button type="submit">Acheter</button>
+</form>
+
             <br>
             <hr>
             <br>
@@ -135,10 +137,10 @@ $result = $conn->query($sql);
             <hr>
             <p class="centre">8 CHF / mois</p>
             <form action="panier.php" method="post">
-                <input type="hidden" name="produit" value="Pro">
-                <input type="hidden" name="prix" value="8">
-                <button type="submit">Acheter</button>
-            </form>
+    <input type="hidden" name="idProduit" value="3">
+    <!-- Bouton "Acheter" -->
+    <button type="submit">Acheter</button>
+</form>
             <br>
             <hr>
             <br>
@@ -174,7 +176,8 @@ $result = $conn->query($sql);
     <div class="zone-avis">
     <?php
             if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
+                while ($row = $result->fetch_assoc()) 
+                {
                     echo '<div class="avis">';
                     echo '<div class="pseudo">';
                     echo '<p>@' . htmlspecialchars($row["Nom"]) . '</p>';
@@ -206,93 +209,42 @@ $result = $conn->query($sql);
             </div>
         <?php endif; ?>
 </main>
-
-<?php
-include 'footer.html';
-?>
-</body>
-<style>
-        button[type="submit"] , button
-        {
-            background-color: #19ba19;
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            min-height: 48px;
-            text-align: center;
-            width: 50%;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 15px;
-            padding: 10px;
-            font-size: x-large;
-            transition: background-color 500ms;
-        }
-
-        button[type="submit"]:hover , button:hover 
-        {
-            background-color: #128d12;
-            transition: background-color 500ms;
-        }
-    </style>
-</html>
-
 <?php
 session_start();
 
 // Vérifiez si l'utilisateur est connecté
 if (!isset($_SESSION['user_id'])) {
-    header("Location: connection.php");
+    // Redirigez l'utilisateur vers la page de connexion s'il n'est pas connecté
+    header("Location: connexion.php");
     exit();
 }
 
-// Chaine de connexion à la base de données
-$servername = "localhost";
-$username = "nathan";
-$password = "Super";
-$dbname = "freezix_host";
+// Récupérez l'ID du produit à partir du formulaire
+if (isset($_POST['idProduit'])) {
+    $idProduit = $_POST['idProduit'];
 
-// Connection à la base de données
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Vérification de la connexion
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Gestion de l'ajout au panier
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['produit']) && isset($_POST['prix'])) {
-    $user_id = $_SESSION['user_id'];
-    $produit = $_POST['produit'];
-    $prix = $_POST['prix'];
-
-    // Vérifier si l'utilisateur a déjà un panier
-    $sql = "SELECT * FROM Panier WHERE user_id = $user_id";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        // L'utilisateur a déjà un panier, ajout de l'item
-        $row = $result->fetch_assoc();
-        $panier_id = $row['idPanier'];
-    } else {
-        // Création d'un nouveau panier pour l'utilisateur
-        $sql = "INSERT INTO Panier (user_id) VALUES ($user_id)";
-        if ($conn->query($sql) === TRUE) {
-            $panier_id = $conn->insert_id;
-        } else {
-            echo "Erreur lors de la création du panier: " . $conn->error;
-        }
-    }
-
-    // Ajout de l'item au panier
-    $sql = "INSERT INTO PanierItem (panier_id, produit, prix) VALUES ($panier_id, '$produit', $prix)";
+    // Ajoutez le produit au panier dans la base de données
+    // Ici, vous pouvez exécuter une requête SQL pour ajouter le produit au panier
+    // Assurez-vous de remplacer "votre_requete_sql" par votre propre requête SQL pour ajouter le produit au panier
+    // et de gérer les erreurs de requête SQL si nécessaire
+    // Exemple :
+    /*
+    $sql = "INSERT INTO Panier (idUtilisateur, idProduit, Quantite) VALUES ($_SESSION['user_id'], $idProduit, 1)";
     if ($conn->query($sql) === TRUE) {
-        echo "Item ajouté au panier avec succès.";
+        echo "Produit ajouté au panier avec succès.";
     } else {
-        echo "Erreur lors de l'ajout de l'item au panier: " . $conn->error;
+        echo "Erreur lors de l'ajout du produit au panier: " . $conn->error;
     }
+    */
+} else {
+    // Redirigez l'utilisateur vers la page précédente si l'ID du produit n'est pas défini
+    header("Location: javascript://history.go(-1)");
+    exit();
 }
 ?>
+
+<?php
+include 'footer.html';
+?>
+</body>
+</html>
